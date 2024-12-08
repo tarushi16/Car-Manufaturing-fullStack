@@ -1,0 +1,97 @@
+<div class="flex">
+    <!-- Sidebar -->
+    <aside class="w-1/4 bg-gray-800 text-white p-6 h-screen flex flex-col justify-between">
+        <div>
+            <h1 class="text-xl font-bold mb-8">User Dashboard</h1>
+            <ul class="space-y-6">
+                <li><a href="#" class="text-lg hover:text-indigo-500">Dashboard</a></li>
+                <li><a href="#" class="text-lg hover:text-indigo-500">Manage Users</a></li>
+                <li><a href="#" class="text-lg hover:text-indigo-500">Settings</a></li>
+            </ul>
+        </div>
+        <button
+            class="px-4 py-2 bg-indigo-500 text-white rounded-lg hover:bg-indigo-600 focus:outline-none">Dashboard</button>
+    </aside>
+
+    <!-- Main content -->
+    <main class="flex-1 bg-gray-100 p-8">
+        <div class="bg-white rounded-lg shadow-lg p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-semibold text-gray-800">User Information</h2>
+            </div>
+
+            <!-- User Form -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="p-6 bg-gray-50 rounded-lg shadow-sm">
+                    <h3 class="text-lg font-semibold text-gray-700">Personal Information</h3>
+                    <form (ngSubmit)="saveUser()">
+                        <div class="mb-4">
+                            <label for="username" class="block text-sm font-medium text-gray-600">Username</label>
+                            <input type="text" id="username" [(ngModel)]="user.username" name="username"
+                                class="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500"
+                                required>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="email" class="block text-sm font-medium text-gray-600">Email</label>
+                            <input type="email" id="email" [(ngModel)]="user.email" name="email"
+                                class="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500"
+                                required>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="password" class="block text-sm font-medium text-gray-600">Password</label>
+                            <input type="password" id="password" [(ngModel)]="user.password" name="password"
+                                class="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500"
+                                required>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="role" class="block text-sm font-medium text-gray-600">Role</label>
+                            <select id="role" [(ngModel)]="user.role" name="role"
+                                class="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500"
+                                required>
+                                <option value="Admin">Admin</option>
+                                <option value="User">User</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="isActive" class="block text-sm font-medium text-gray-600">Status</label>
+                            <select id="isActive" [(ngModel)]="user.isActive" name="isActive"
+                                class="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500"
+                                required>
+                                <option [ngValue]="true">Active</option>
+                                <option [ngValue]="false">Inactive</option>
+                            </select>
+                        </div>
+
+                        <div class="flex justify-end">
+                            <button type="submit"
+                                class="px-6 py-2 bg-indigo-500 text-white rounded-lg hover:bg-indigo-600 focus:outline-none">Save</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- User Summary -->
+                <div class="p-6 bg-gray-50 rounded-lg shadow-sm">
+                    <h3 class="text-lg font-semibold text-gray-700">Account Overview</h3>
+                    <div class="mb-4">
+                        <p><strong>Username:</strong> {{ user?.username }}</p>
+                        <p><strong>Email:</strong> {{ user?.email }}</p>
+                        <p><strong>Role:</strong> {{ user?.role }}</p>
+                        <p><strong>Status:</strong>
+                            <span [ngClass]="{'text-green-500': user?.isActive, 'text-red-500': !user?.isActive}">
+                                {{ user?.isActive ? 'Active' : 'Inactive' }}
+                            </span>
+                        </p>
+                    </div>
+                    <div class="flex justify-end">
+                        <button (click)="deactivateUser()"
+                            class="px-6 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 focus:outline-none">Deactivate</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>

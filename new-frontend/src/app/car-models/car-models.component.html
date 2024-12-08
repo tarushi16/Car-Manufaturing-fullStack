@@ -1,0 +1,81 @@
+<div class="container">
+    <h1 class="title">Car Models Management</h1>
+    <button class="dashboard-btn" (click)="goToDashboard()">Go to Dashboard</button>
+
+    <!-- Form Section -->
+    <div class="form-section">
+        <h2>{{ selectedCarModel ? 'Edit Car Model' : 'Add New Car Model' }}</h2>
+        <form [formGroup]="carModelForm" (ngSubmit)="onSubmit()">
+            <div class="form-row">
+                <label>Model Name:</label>
+                <input formControlName="modelName" type="text" />
+            </div>
+
+            <div class="form-row">
+                <label>Engine Type:</label>
+                <input formControlName="engineType" type="text" />
+            </div>
+
+            <div class="form-row">
+                <label>Fuel Efficiency:</label>
+                <input formControlName="fuelEfficiency" type="text" />
+            </div>
+
+            <div class="form-row">
+                <label>Design Features:</label>
+                <input formControlName="designFeatures" type="text" />
+            </div>
+
+            <div class="form-row">
+                <label>Production Cost:</label>
+                <input formControlName="productionCost" type="number" />
+            </div>
+
+            <div class="form-row">
+                <label>Status:</label>
+                <select formControlName="status">
+                    <option value="Active">Active</option>
+                    <option value="Discontinued">Discontinued</option>
+                </select>
+            </div>
+
+            <div class="button-group">
+                <button type="submit" class="btn-submit">{{ selectedCarModel ? 'Update' : 'Add' }}</button>
+                <button type="button" class="btn-reset" (click)="resetForm()">Reset</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Car Models Table -->
+    <div class="table-section">
+        <h2>Car Models List</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Model Name</th>
+                    <th>Engine Type</th>
+                    <th>Fuel Efficiency</th>
+                    <th>Design Features</th>
+                    <th>Production Cost</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let carModel of carModels">
+                    <td>{{ carModel.modelName }}</td>
+                    <td>{{ carModel.engineType }}</td>
+                    <td>{{ carModel.fuelEfficiency }}</td>
+                    <td>{{ carModel.designFeatures }}</td>
+                    <td>{{ carModel.productionCost }}</td>
+                    <td>{{ carModel.status }}</td>
+                    <td>
+                        <button (click)="onEdit(carModel)" class="btn-edit">Edit</button>
+                        <button *ngIf="carModel.modelId" (click)="onDelete(carModel.modelId)"
+                            class="btn-delete">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

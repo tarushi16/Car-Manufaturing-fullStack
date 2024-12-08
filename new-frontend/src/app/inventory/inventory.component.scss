@@ -1,0 +1,178 @@
+// Global Styles
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f7f7;
+    color: #333;
+}
+
+.container {
+    width: 80%;
+    margin: 30px auto;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+// Header Section
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.title {
+    font-size: 32px;
+    color: #333;
+}
+
+.dashboard-btn {
+    padding: 10px 20px;
+    background-color: #6c5ce7;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    display: flex;
+    align-items: center;
+
+    .icon {
+        margin-right: 8px;
+    }
+
+    &:hover {
+        background-color: #4e3fc2;
+        transform: scale(1.05);
+    }
+}
+
+// Form Section
+.inventory-form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.form-row {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-label {
+    font-weight: bold;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.form-input {
+    padding: 10px;
+    font-size: 14px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    outline: none;
+    transition: border-color 0.3s;
+
+    &:focus {
+        border-color: #6c5ce7;
+    }
+}
+
+// Submit Button (Save Inventory) - Adjusted size
+// Submit Button (Save Inventory) - Adjusted size
+// Submit Button (Add Inventory)
+.submit-btn {
+    padding: 10px 20px;
+    /* Moderate size for balance */
+    background-color: #3498db;
+    /* Light blue for Add Inventory */
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s, transform 0.2s;
+
+    .icon {
+        margin-right: 8px;
+    }
+
+    &:hover {
+        background-color: #2980b9;
+        /* Darker blue on hover */
+        transform: scale(1.05);
+    }
+}
+
+// Inventory List Section
+.inventory-list {
+    margin-top: 30px;
+}
+
+.inventory-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.inventory-table th,
+.inventory-table td {
+    padding: 12px 15px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.inventory-table th {
+    background-color: #34495e;
+    color: #fff;
+}
+
+.inventory-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.inventory-table tr:hover {
+    background-color: #ecf0f1;
+}
+
+// Action Buttons (Edit and Delete)
+.action-btn {
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: transform 0.2s;
+
+    &.edit-btn {
+        background-color: #f39c12;
+        color: white;
+
+        &:hover {
+            background-color: #e67e22;
+            transform: scale(1.1);
+        }
+    }
+
+    &.delete-btn {
+        background-color: #e74c3c;
+        color: white;
+
+        &:hover {
+            background-color: #c0392b;
+            transform: scale(1.1);
+        }
+    }
+}

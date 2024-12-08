@@ -1,0 +1,59 @@
+<div class="container">
+    <div class="header">
+        <h3>Report Management</h3>
+        <button class="btn btn-dashboard" (click)="goToDashboard()">Dashboard</button>
+    </div>
+
+    <!-- Form for creating or editing report -->
+    <div class="form-container">
+        <h4>{{ editingReportId ? 'Edit' : 'Create' }} Report</h4>
+        <form [formGroup]="reportForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="type">Report Type</label>
+                <input type="text" id="type" formControlName="type" class="form-control" placeholder="Enter report type"
+                    required>
+            </div>
+            <div class="form-group">
+                <label for="generatedDate">Generated Date</label>
+                <input type="date" id="generatedDate" formControlName="generatedDate" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="data">Report Data</label>
+                <textarea id="data" formControlName="data" class="form-control" placeholder="Enter report data"
+                    required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="createdBy">Created By (User ID)</label>
+                <input type="number" id="createdBy" formControlName="createdBy" class="form-control"
+                    placeholder="Enter user ID" required>
+            </div>
+            <button type="submit" class="btn btn-submit" [disabled]="reportForm.invalid">Submit</button>
+        </form>
+    </div>
+
+    <!-- Displaying the Report List -->
+    <div class="table-container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Report Type</th>
+                    <th>Generated Date</th>
+                    <th>Created By</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let report of reports">
+                    <td>{{ report.type }}</td>
+                    <td>{{ report.generatedDate | date }}</td>
+                    <td>{{ report.createdBy }}</td>
+                    <td>
+                        <button class="btn btn-warning" (click)="editReport(report)">Edit</button>
+                        <button class="btn btn-danger" (click)="deleteReport(report.reportId)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+

@@ -1,0 +1,55 @@
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="navbar-brand">Car Management System</div>
+    <ul class="navbar-links">
+        <li><a href="/">Dashboard</a></li>
+        <li><a href="/profile">Profile</a></li>
+        <li><a href="/logout">Logout</a></li>
+    </ul>
+</nav>
+
+<!-- Header -->
+<header class="header">
+    <h1>Dashboard</h1>
+    <p>Manage your system efficiently</p>
+</header>
+
+<!-- Main Content -->
+<div class="dashboard-container">
+    <div class="card" (click)="navigateTo('car-models')">
+        <h3>Car Models</h3>
+    </div>
+    <div class="card" (click)="navigateTo('customer')">
+        <h3>Customer</h3>
+    </div>
+    <div class="card" (click)="navigateTo('finance')">
+        <h3>Finance</h3>
+    </div>
+    <div class="card" (click)="navigateTo('inventory')">
+        <h3>Inventory</h3>
+    </div>
+    <div class="card" (click)="navigateTo('production')">
+        <h3>Production</h3>
+    </div>
+    <div class="card" (click)="navigateTo('quality-control')">
+        <h3>Quality Control</h3>
+    </div>
+    <div class="card" (click)="navigateTo('report')">
+        <h3>Report</h3>
+    </div>
+    <div class="card" (click)="navigateTo('sales-order')">
+        <h3>Sales Order</h3>
+    </div>
+    <div class="card" (click)="navigateTo('supplier')">
+        <h3>Supplier</h3>
+    </div>
+    <div class="card" (click)="navigateTo('user')">
+        <h3>User</h3>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+    <p>&copy; 2024 Car Management System. All rights reserved.</p>
+</footer>
+

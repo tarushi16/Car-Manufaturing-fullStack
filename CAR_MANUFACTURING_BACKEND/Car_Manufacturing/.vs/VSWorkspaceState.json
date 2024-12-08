@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\bin",
+    "\\Models",
+    "\\Services",
+    "\\Services\\Authentication",
+    "\\Services\\CarModels",
+    "\\Services\\Customers",
+    "\\Services\\Financial",
+    "\\Services\\Inventory",
+    "\\Services\\Notifications"
+  ],
+  "SelectedNode": "\\Car_Manufacturing.sln",
+  "PreviewInSolutionExplorer": false
+}

@@ -1,0 +1,82 @@
+<div class="supplier-container">
+    <div class="header">
+        <h1>Supplier Management</h1>
+        <button (click)="goToDashboard()" class="dashboard-btn">Go to Dashboard</button>
+    </div>
+
+    <div class="supplier-form-container">
+        <h2>{{ editingSupplierId ? 'Edit' : 'Create' }} Supplier</h2>
+        <form [formGroup]="supplierForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="name">Supplier Name</label>
+                <input id="name" formControlName="name" type="text" placeholder="Enter supplier name" />
+            </div>
+
+            <div class="form-group">
+                <label for="contactDetails">Contact Details</label>
+                <input id="contactDetails" formControlName="contactDetails" type="text"
+                    placeholder="Enter contact details" />
+            </div>
+
+            <div class="form-group">
+                <label for="materialType">Material Type</label>
+                <input id="materialType" formControlName="materialType" type="text" placeholder="Enter material type" />
+            </div>
+
+            <div class="form-group">
+                <label for="deliveryTime">Delivery Time (days)</label>
+                <input id="deliveryTime" formControlName="deliveryTime" type="number"
+                    placeholder="Enter delivery time" />
+            </div>
+
+            <div class="form-group">
+                <label for="pricing">Pricing</label>
+                <input id="pricing" formControlName="pricing" type="number" placeholder="Enter pricing" />
+            </div>
+
+            <div class="form-group">
+                <label for="status">Status</label>
+                <select id="status" formControlName="status">
+                    <option value="Active">Active</option>
+                    <option value="Inactive">Inactive</option>
+                </select>
+            </div>
+
+            <button type="submit" [disabled]="supplierForm.invalid">{{ editingSupplierId ? 'Update' : 'Create' }}
+                Supplier</button>
+        </form>
+    </div>
+
+    <div class="supplier-list-container">
+        <h2>All Suppliers</h2>
+        <table class="supplier-table">
+            <thead>
+                <tr>
+                    <th>Supplier ID</th>
+                    <th>Name</th>
+                    <th>Contact</th>
+                    <th>Material Type</th>
+                    <th>Delivery Time</th>
+                    <th>Pricing</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let supplier of suppliers">
+                    <td>{{ supplier.supplierId }}</td>
+                    <td>{{ supplier.name }}</td>
+                    <td>{{ supplier.contactDetails }}</td>
+                    <td>{{ supplier.materialType }}</td>
+                    <td>{{ supplier.deliveryTime }} days</td>
+                    <td>{{ supplier.pricing | currency }}</td>
+                    <td>{{ supplier.status }}</td>
+                    <td>
+                        <button (click)="editSupplier(supplier)">Edit</button>
+                        <button (click)="deleteSupplier(supplier.supplierId)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

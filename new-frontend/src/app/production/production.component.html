@@ -1,0 +1,73 @@
+<div class="container">
+    <div class="header">
+        <button class="btn btn-primary" (click)="goToDashboard()">Dashboard</button>
+        <h2>Production Order Management</h2>
+    </div>
+
+    <div class="form-container">
+        <form [formGroup]="productionForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="carModelId">Car Model ID</label>
+                <input id="carModelId" formControlName="carModelId" type="number" class="form-control"
+                    placeholder="Enter Car Model ID" />
+            </div>
+
+            <div class="form-group">
+                <label for="startDate">Start Date</label>
+                <input id="startDate" formControlName="startDate" type="date" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label for="endDate">End Date</label>
+                <input id="endDate" formControlName="endDate" type="date" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label for="quantity">Quantity</label>
+                <input id="quantity" formControlName="quantity" type="number" class="form-control"
+                    placeholder="Enter Quantity" />
+            </div>
+
+            <div class="form-group">
+                <label for="status">Status</label>
+                <input id="status" formControlName="status" type="text" class="form-control"
+                    placeholder="Enter Status" />
+            </div>
+
+            <button type="submit" class="btn btn-success" [disabled]="productionForm.invalid">
+                {{ editingOrderId ? 'Update Order' : 'Create Order' }}
+            </button>
+        </form>
+    </div>
+
+    <div class="table-container">
+        <h3>Production Order List</h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Car Model ID</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Quantity</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let order of productionOrders">
+                    <td>{{ order.orderId }}</td>
+                    <td>{{ order.carModelId }}</td>
+                    <td>{{ order.startDate | date: 'shortDate' }}</td>
+                    <td>{{ order.endDate | date: 'shortDate' }}</td>
+                    <td>{{ order.quantity }}</td>
+                    <td>{{ order.status }}</td>
+                    <td>
+                        <button class="btn btn-warning" (click)="editOrder(order)">Edit</button>
+                        <button class="btn btn-danger" (click)="deleteOrder(order.orderId)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,74 @@
+<div class="container">
+    <div class="header">
+        <div class="title">Inventory Management</div>
+        <button class="btn dashboard-btn" (click)="goToDashboard()">Go to Dashboard</button>
+    </div>
+
+    <!-- Inventory Form Section -->
+    <div class="inventory-form">
+        <div class="form-row">
+            <label for="componentName" class="form-label">Component Name</label>
+            <input id="componentName" formControlName="componentName" class="form-input"
+                placeholder="Enter Component Name" />
+        </div>
+
+        <div class="form-row">
+            <label for="quantity" class="form-label">Quantity</label>
+            <input id="quantity" formControlName="quantity" type="number" class="form-input" value="0" />
+        </div>
+
+        <div class="form-row">
+            <label for="supplierId" class="form-label">Supplier ID</label>
+            <input id="supplierId" formControlName="supplierId" type="number" class="form-input" value="0" />
+        </div>
+
+        <div class="form-row">
+            <label for="stockLevel" class="form-label">Stock Level</label>
+            <input id="stockLevel" formControlName="stockLevel" type="number" class="form-input" value="0" />
+        </div>
+
+        <div class="form-row">
+            <label for="reorderThreshold" class="form-label">Reorder Threshold</label>
+            <input id="reorderThreshold" formControlName="reorderThreshold" type="number" class="form-input"
+                value="0" />
+        </div>
+
+        <!-- Add Inventory Button -->
+        <button (click)="onSubmit()" class="submit-btn">
+            <span class="icon">➕</span> Add Inventory
+        </button>
+    </div>
+
+    <!-- Inventory List Section -->
+    <div class="inventory-list">
+        <h3>Inventory List</h3>
+        <table class="inventory-table">
+            <thead>
+                <tr>
+                    <th>Inventory ID</th>
+                    <th>Component Name</th>
+                    <th>Quantity</th>
+                    <th>Supplier ID</th>
+                    <th>Stock Level</th>
+                    <th>Reorder Threshold</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of inventoryList">
+                    <td>{{ item.inventoryId }}</td>
+                    <td>{{ item.componentName }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>{{ item.supplierId }}</td>
+                    <td>{{ item.stockLevel }}</td>
+                    <td>{{ item.reorderThreshold }}</td>
+                    <td>
+                        <button class="action-btn edit-btn" (click)="editInventory(item)">Edit</button>
+                        <button class="action-btn delete-btn"
+                            (click)="deleteInventory(item.inventoryId)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

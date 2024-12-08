@@ -1,0 +1,72 @@
+<!-- quality-control.component.html -->
+
+<div class="container">
+    <div class="header">
+        <h3>Quality Control Reports</h3>
+        <button class="btn btn-dashboard" (click)="goToDashboard()">Dashboard</button>
+    </div>
+
+    <!-- Form for creating or editing quality control reports -->
+    <div class="form-container">
+        <h4>{{ editingReportId ? 'Edit' : 'Create' }} Quality Report</h4>
+        <form [formGroup]="qualityControlForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="carModelId">Car Model</label>
+                <input type="number" id="carModelId" formControlName="carModelId" class="form-control"
+                    placeholder="Enter Car Model ID">
+            </div>
+            <div class="form-group">
+                <label for="inspectionDate">Inspection Date</label>
+                <input type="date" id="inspectionDate" formControlName="inspectionDate" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="inspectorId">Inspector ID</label>
+                <input type="number" id="inspectorId" formControlName="inspectorId" class="form-control"
+                    placeholder="Enter Inspector ID">
+            </div>
+            <div class="form-group">
+                <label for="testResults">Test Results</label>
+                <textarea id="testResults" formControlName="testResults" class="form-control"
+                    placeholder="Enter test results"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="defectsFound">Defects Found</label>
+                <textarea id="defectsFound" formControlName="defectsFound" class="form-control"
+                    placeholder="Enter defects found"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="status">Status</label>
+                <input type="text" id="status" formControlName="status" class="form-control" placeholder="Enter status">
+            </div>
+            <button type="submit" class="btn btn-primary" [disabled]="qualityControlForm.invalid">Submit</button>
+        </form>
+    </div>
+
+    <!-- Displaying the Quality Reports List -->
+    <div class="table-container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Car Model</th>
+                    <th>Inspection Date</th>
+                    <th>Inspector ID</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let report of qualityReports">
+                    <td>{{ report.carModelId }}</td>
+                    <td>{{ report.inspectionDate | date }}</td>
+                    <td>{{ report.inspectorId }}</td>
+                    <td>{{ report.status }}</td>
+                    <td>
+                        <button class="btn btn-warning" (click)="editReport(report)">Edit</button>
+                        <button class="btn btn-danger" (click)="deleteReport(report.reportId)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+

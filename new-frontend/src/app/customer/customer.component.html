@@ -1,0 +1,73 @@
+<div class="customer-container">
+    <!-- Dashboard Button -->
+    <div class="dashboard-btn-container">
+        <button class="btn-dashboard" (click)="goToDashboard()">Go to Dashboard</button>
+    </div>
+
+    <h1 class="page-title">Customer Management</h1>
+
+    <!-- Form Section -->
+    <div class="form-section">
+        <h2>{{ selectedCustomer ? 'Edit Customer' : 'Add New Customer' }}</h2>
+        <form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
+            <div class="form-row">
+                <label for="name">Name:</label>
+                <input formControlName="name" id="name" type="text" placeholder="Enter Customer's Name" />
+            </div>
+
+            <div class="form-row">
+                <label for="contactDetails">Contact Details:</label>
+                <input formControlName="contactDetails" id="contactDetails" type="text"
+                    placeholder="Enter Contact Details" />
+            </div>
+
+            <div class="form-row">
+                <label for="purchaseHistory">Purchase History:</label>
+                <textarea formControlName="purchaseHistory" id="purchaseHistory" placeholder="Enter Purchase History"
+                    rows="3"></textarea>
+            </div>
+
+            <div class="form-row">
+                <label for="status">Status:</label>
+                <select formControlName="status" id="status">
+                    <option value="Active">Active</option>
+                    <option value="Inactive">Inactive</option>
+                </select>
+            </div>
+
+            <div class="form-buttons">
+                <button class="btn-primary" type="submit">{{ selectedCustomer ? 'Update Customer' : 'Add Customer'
+                    }}</button>
+                <button class="btn-secondary" type="button" (click)="resetForm()">Reset</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Customers Table -->
+    <div class="table-section">
+        <h2>Customer List</h2>
+        <table class="customer-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Contact Details</th>
+                    <th>Purchase History</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let customer of customers">
+                    <td>{{ customer.name }}</td>
+                    <td>{{ customer.contactDetails }}</td>
+                    <td>{{ customer.purchaseHistory }}</td>
+                    <td>{{ customer.status }}</td>
+                    <td>
+                        <button class="btn-edit" (click)="onEdit(customer)">Edit</button>
+                        <button class="btn-delete" (click)="onDelete(customer.customerId)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
